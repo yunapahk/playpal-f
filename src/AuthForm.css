@@ -22,7 +22,7 @@ html,body{
   background: #fff;
   padding: 30px;
   border-radius: 15px;
-  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+
 }
 .wrapper .title-text{
   display: flex;
@@ -103,7 +103,7 @@ input[type="radio"]{
   padding-right: 300px;
 }
 .form-container .form-inner form{
-  width: 50%;
+  width: 90%;
   transition: all 0.6s cubic-bezier(0.68,-0.55,0.265,1.55);
 }
 .form-inner form .field{
