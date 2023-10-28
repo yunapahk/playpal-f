@@ -1,11 +1,26 @@
-import './assets/main.css'
+import { createApp } from 'vue';
+import App from './App.vue';
+import router from './router';
 
-import { createApp } from 'vue'
-import App from './App.vue'
-import router from './router'
+// Vuetify
+import 'vuetify/styles';
+import { createVuetify } from 'vuetify';
+import * as components from 'vuetify/components';
+import * as directives from 'vuetify/directives';
+import 'vuetify/dist/vuetify.min.css';
 
-const app = createApp(App)
+const vuetify = createVuetify({
+  components,
+  directives,
+  theme: {
+    defaultTheme: 'myTheme',
+    themes: {
+      myTheme: {
+        primary: '#FF5722',  
+        secondary: '#03A9F4'
+      }
+    }
+  }
+});
 
-app.use(router)
-
-app.mount('#app')
+createApp(App).use(router).use(vuetify).mount('#app');

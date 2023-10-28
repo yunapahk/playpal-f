@@ -1,85 +1,129 @@
-<script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+  <v-app>
+    <header>
+      <v-app-bar :elevation="2" class="thin-navbar">
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+        <!-- Hamburger Menu -->
+        <v-btn icon @click="drawer = !drawer" class="d-md-none burger-btn">
+          🍔
+        </v-btn>
+        
+        <!-- Home button -->
+        <router-link :to="{ name: 'Dashboard' }">
+          <v-btn color="white">
+            <i class="fa-solid fa-house small-icon" style="color: #ffffff;"></i>
+          </v-btn>
+        </router-link>
 
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
+        <v-spacer></v-spacer>
+        
+        <!-- Rest of the buttons - Hidden on small screens -->
+        <div class="d-none d-md-flex">
+          <router-link :to="{ name: 'Dashboard' }">
+            <v-btn color="white" text>Home</v-btn>
+          </router-link>
+          <router-link :to="{ name: 'create' }">
+            <v-btn color="white">
+              <i class="fa-solid fa-plus small-icon" style="color: #ffffff;"></i>
+            </v-btn>
+          </router-link>
+        </div>
+
+      </v-app-bar>
+      
+      <!-- Navigation Drawer for mobile screens -->
+      <v-navigation-drawer v-model="drawer" app temporary>
+        <v-list>
+            <v-list-item>
+                <v-list-item-content>
+                    <router-link :to="{ name: 'dashboard' }">
+                        <v-btn color="white" text class="elevation-0 mt-2">Dashboard</v-btn>
+                    </router-link>
+                </v-list-item-content>
+            </v-list-item>
+        </v-list>
+      </v-navigation-drawer>
+
+    </header>
+
+    <div class="content">
+      <router-view></router-view>
     </div>
-  </header>
-
-  <RouterView />
+    
+    <!-- Footer Component -->
+    <Dashboard />
+    <Footer />
+  </v-app>
 </template>
 
+<script>
+import '@fortawesome/fontawesome-free/css/all.css';
+import Footer from '@/components/Footer.vue';
+import DogsView from '@/components/DogsView.vue';
+import Dashboard from '@/components/Dashboard.vue';
+
+
+export default {
+  components: {
+    DogsView,
+    Footer,
+    Dashboard
+},
+  data() {
+    return {
+      drawer: false
+    }
+  }
+}
+</script>
+
 <style scoped>
+
 header {
-  line-height: 1.5;
-  max-height: 100vh;
+  background-color: #f9f9f9;
+  padding: 1rem 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.v-app-bar.thin-navbar {
+  height: 55px;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(to bottom, rgb(118, 82, 196), rgb(88, 62, 176));
+  margin-bottom: 20px;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+
+.v-btn {
+  padding: 0px 50px 50px 50px;
 }
 
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
+.burger-btn {
+  margin-bottom: 8px;
 }
 
-nav a.router-link-exact-active {
-  color: var(--color-text);
+router-link {
+  text-decoration: none;
+  color: #333;  
+  padding: 0.5em 1em;
+  border-radius: 0.5em;
+  transition: background-color 0.2s;
 }
 
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
+router-link:hover {
+  background-color: #f5f5f5;
 }
 
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
+router-link.active {
+  background-color: #e0e0e0;
 }
 
-nav a:first-of-type {
-  border: 0;
+main {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: auto;
 }
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
+.small-icon {
+  font-size: 16px;
 }
 </style>
