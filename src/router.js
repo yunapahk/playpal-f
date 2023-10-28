@@ -25,5 +25,5 @@ const router = createBrowserRouter(createRoutesFromElements(
         <Route path="dashboard" element={<Index/>} loader={dogsLoader}/>
     </Route>
 ))
-
+ 
 export default router;
