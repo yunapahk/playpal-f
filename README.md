@@ -1,7 +1,7 @@
 # PlayPal  
 
-- **Contributors:** Yuna Pahk & Isaac Asher
-- [**Backend Render**](https://playpal-976f.onrender.com)
+- **Contributors:** Yuna Pahk
+- [**Backend Heroku**](https://pawpal-b-fd152c2ad03f.herokuapp.com/)
 - [**Deployed Site**](https://playpal-yunapahk.vercel.app/)
 - **Languages, Database, and Frameworks Used:** React, Express, Node, MongoDB, SASS, EJS, JSX, Javascript
 - [**Trello**](https://trello.com/b/6PwBedlF/playpal)
@@ -89,4 +89,4 @@ erDiagram
         int userId
         int matchUserId
     }
-`
+```
